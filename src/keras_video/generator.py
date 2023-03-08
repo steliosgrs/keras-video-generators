@@ -236,10 +236,10 @@ class VideoFrameGenerator(Sequence):
                     # rewind and stop
                     break
                 total += 1
-
+            c.release()
         # keep the result
         self._framecounters[name] = total
-        c.release()
+        
         return total
 
     def _discover_classes(self):
