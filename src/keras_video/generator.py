@@ -236,7 +236,8 @@ class VideoFrameGenerator(Sequence):
                     # rewind and stop
                     break
                 total += 1
-            c.release()
+            if c.isOpened():
+                c.release()
         # keep the result
         self._framecounters[name] = total
         
@@ -392,7 +393,8 @@ class VideoFrameGenerator(Sequence):
 
     def _get_frames(self, video, nbframe, shape, force_no_headers=False):
         cap = cv.VideoCapture(video)
-        total_frames = self.count_frames(cap, video, force_no_headers)
+        # total_frames = self.count_frames(cap, video, force_no_headers)
+        total_frames = int(cap.get(cv.CAP_PROP_FRAME_COUNT)) - 1
         frame_step = floor(total_frames/nbframe/2)
         # TODO: fix that, a tiny video can have a frame_step that is
         # under 1
