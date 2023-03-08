@@ -237,7 +237,7 @@ class VideoFrameGenerator(Sequence):
 
         # keep the result
         self._framecounters[name] = total
-
+        c.release()
         return total
 
     def _discover_classes(self):
@@ -277,7 +277,7 @@ class VideoFrameGenerator(Sequence):
             rescale=self.rescale,
             glob_pattern=self.glob_pattern,
             use_headers=self.use_video_header,
-            _validation_data=self.validation,
+            _validation_data=self.validation
         )
 
     def get_test_generator(self):
@@ -292,7 +292,7 @@ class VideoFrameGenerator(Sequence):
             rescale=self.rescale,
             glob_pattern=self.glob_pattern,
             use_headers=self.use_video_header,
-            _test_data=self.test,
+            _test_data=self.test
         )
 
     def on_epoch_end(self):
