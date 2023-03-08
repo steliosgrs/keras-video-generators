@@ -239,7 +239,7 @@ class VideoFrameGenerator(Sequence):
 
         # keep the result
         self._framecounters[name] = total
-
+        c.release()
         return total
 
     def _discover_classes(self):
