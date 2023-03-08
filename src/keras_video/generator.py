@@ -236,8 +236,8 @@ class VideoFrameGenerator(Sequence):
                     # rewind and stop
                     break
                 total += 1
-            if c.isOpened():
-                c.release()
+            # if c.isOpened():
+            #     c.release()
         # keep the result
         self._framecounters[name] = total
         
